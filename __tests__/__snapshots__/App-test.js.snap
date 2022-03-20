@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<First/> snapshot test 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 30,
+          "marginVertical": 30,
+        }
+      }
+    >
+      Counter: undefined
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "green",
+            "height": 40,
+            "justifyContent": "center",
+            "margin": 15,
+            "opacity": 1,
+            "width": 80,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 15,
+            }
+          }
+        >
+          Increase
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "green",
+            "height": 40,
+            "justifyContent": "center",
+            "margin": 15,
+            "opacity": 1,
+            "width": 80,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 15,
+            }
+          }
+        >
+          Decrease
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "blue",
+        "height": 70,
+        "justifyContent": "center",
+        "opacity": 1,
+        "width": 120,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 20,
+        }
+      }
+    >
+      Next
+    </Text>
+  </View>
+</View>
+`;
