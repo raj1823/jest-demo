@@ -2,25 +2,33 @@ import 'react-native';
 import React from 'react';
 import {First} from '../src/first';
 import {Second} from '../src/second';
+import Counter from '../src/counter';
 import {Provider} from 'react-redux';
 import {shallow, configure} from 'enzyme';
 import thunk from 'redux-thunk';
 import Adapter from 'enzyme-adapter-react-16';
-jest.setTimeout(10000)
+
+import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
+import {render, cleanup, fireEvent} from '@testing-library/react-native';
+configure({adapter: new Adapter()});
+afterEach(() => {
+  cleanup();
+});
+jest.setTimeout(10000);
 
 // Note: test renderer must be required after react-native.
 // JEST DOCUMENTATION : https://jestjs.io/docs/api
 
-import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
-import {render, cleanup, fireEvent} from 'react-native-testing-library';
-configure({adapter: new Adapter()});
+//USE CASES :
+// Shallow: create and test component only (no children)
+// Mount: same as shallow but mounts with children and parent/host component, allows lifecycle methods
+// Render: outputs the html given by the component, including children
 
 describe('<First/>', () => {
-  const mockStore = configureStore([thunk]);
+  const mockStore = configureStore([]);
 
   it('snapshot test', () => {
-    // const store = mockStore({counter: 5});
     const tree = render(<First />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -83,5 +91,40 @@ describe('<First/>', () => {
     }
   });
 
-  
+  // timer functions mocking (setTimeout, setIntervals etc.)
+  it('timer mock', () => {
+    jest.useFakeTimers();
+    const wrapper = shallow(<First />).instance();
+    jest.spyOn(global, 'setTimeout');
+    wrapper.timerGame();
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+  });
+
+  it('should display current count', () => {
+    const store = mockStore({count: 5});
+    const rendered = render(
+      <Provider store={store}>
+        <Counter />
+      </Provider>,
+    );
+    const textComponent = rendered.getByTestId('text');
+
+    expect(textComponent.props.children).toContain(5);
+  });
+
+  it('should dispatch increment action', () => {
+    const store = mockStore({count: 5});
+    const rendered = render(
+      <Provider store={store}>
+        <Counter />
+      </Provider>,
+    );
+    const buttonComponent = rendered.getByTestId('button');
+
+    fireEvent(buttonComponent, 'press');
+    const actions = store.getActions();
+    expect(actions.length).toBe(1);
+    expect(actions[0].type).toEqual('INCREMENT');
+  });
 });

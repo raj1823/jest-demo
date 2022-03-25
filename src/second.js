@@ -38,7 +38,7 @@ export class Second extends React.Component {
           backgroundColor: '#fff',
         }}>
         <View style={{alignItems: 'center'}}>
-          <Text style={{fontSize: 30, marginVertical: 30}}>
+          <Text style={{fontSize: 30, marginVertical: 30, color: '#000'}}>
             {`Counter: ${this.props.counter}`}
           </Text>
           <View

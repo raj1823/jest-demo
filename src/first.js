@@ -1,16 +1,12 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   Dimensions,
-  Image,
-  Animated,
-  PanResponder,
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
-import axios from 'axios'
+import axios from 'axios';
 import {increase, decrease} from '../reducers/actions';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -23,6 +19,13 @@ export class First extends React.Component {
       counter: 1,
     };
   }
+  timerGame(callback) {
+    console.log('Ready....go!');
+    setTimeout(() => {
+      console.log("Time's up -- stop!");
+      callback && callback();
+    }, 1000);
+  }
 
   componentDidMount() {
     this.updateCounter();
@@ -32,9 +35,9 @@ export class First extends React.Component {
   };
 
   dummyApi = async callback => {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+    const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
     if (res) callback && callback(res.data);
-    else callback && callback(res)
+    else callback && callback(res);
   };
 
   render() {
@@ -47,7 +50,9 @@ export class First extends React.Component {
           backgroundColor: '#fff',
         }}>
         <View style={{alignItems: 'center'}}>
-          <Text style={{fontSize: 30, marginVertical: 30}}>
+          <Text
+            testID="text"
+            style={{fontSize: 30, marginVertical: 30, color: '#000'}}>
             {`Counter: ${this.props.counter}`}
           </Text>
           <View
@@ -56,6 +61,7 @@ export class First extends React.Component {
               justifyContent: 'space-between',
             }}>
             <TouchableOpacity
+              testID="increase-button"
               onPress={() => {
                 this.props.increase();
               }}
