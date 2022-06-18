@@ -101,6 +101,17 @@ describe('<First/>', () => {
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
   });
 
+ it('calls the csallback after 5 sec', () => {
+    jest.useFakeTimers();
+    const callback = jest.fn();
+    const wrapper = shallow(<First />).instance();
+    wrapper.timerGame(callback);
+    expect(callback).not.toBeCalled();
+    jest.runAllTimers();
+     expect(callback).toBeCalled();
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+
   it('should display current count', () => {
     const store = mockStore({count: 5});
     const rendered = render(
